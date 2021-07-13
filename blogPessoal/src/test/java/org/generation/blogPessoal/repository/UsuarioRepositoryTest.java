@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.generation.blogPessoal.model.Usuario;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -65,11 +64,12 @@ public class UsuarioRepositoryTest {
 		List<Usuario> listaDeUsuarios = usuarioRepository.findAllByNomeContainingIgnoreCase("Silva");
 		assertEquals(3, listaDeUsuarios.size());
 	}
-	
+	/*
 	@AfterAll
 	public void end() {
 		
 		usuarioRepository.deleteAll();
-		
-	}
+		}
+	*/	
+	
 	}
