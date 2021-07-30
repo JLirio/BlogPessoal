@@ -1,18 +1,21 @@
 package org.generation.blogPessoal.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -28,25 +31,33 @@ public class Usuario {
 	private String nome;
 	
 	@NotNull
-	@Email
-	private String login;
-	
-	@NotNull
 	@Size(min = 8)
 	private String senha;
+	
+	private String foto;
+	
+	@NotNull
+	@Size(min = 5, max = 100)
+	private String usuario;
+	
+	private String tipo;
 	
 	@Column(name = "dt_nascimento")
 	@JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dataNascimento; // Atributo adicional
 	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<Postagem> postagem;
+	
 	public Usuario() {
 		
 	}
 
-	public Usuario(long id, String nome, String login, String senha, LocalDate datanascimento) {
+	public Usuario(long id, String nome, String usuario, String senha, LocalDate datanascimento) {
 		this.id = id;
 		this.nome = nome;
-		this.login = login;
+		this.usuario = usuario;
 		this.senha = senha;
 		this.dataNascimento = datanascimento;
 	}
@@ -67,13 +78,7 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
+	
 
 	public String getSenha() {
 		return senha;
@@ -91,4 +96,46 @@ public class Usuario {
 		this.dataNascimento = datanascimento;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+		
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	
 }
