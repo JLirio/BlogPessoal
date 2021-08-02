@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
+//import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+//import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -42,9 +42,7 @@ public class Usuario {
 	
 	private String tipo;
 	
-	@Column(name = "dt_nascimento")
-	@JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate dataNascimento; // Atributo adicional
+	
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
@@ -59,7 +57,7 @@ public class Usuario {
 		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
-		this.dataNascimento = datanascimento;
+		
 	}
 
 	public long getId() {
@@ -88,14 +86,7 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public LocalDate getDatanascimento() {
-		return dataNascimento;
-	}
-
-	public void setDatanascimento(LocalDate datanascimento) {
-		this.dataNascimento = datanascimento;
-	}
-
+	
 	public String getFoto() {
 		return foto;
 	}
@@ -130,12 +121,6 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+	
 	
 }
