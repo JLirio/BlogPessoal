@@ -87,6 +87,7 @@ public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
 				usuarioLogin.get().setToken(authHeader);				
 				usuarioLogin.get().setNome(usuario.get().getNome());
 				usuarioLogin.get().setSenha(usuario.get().getSenha());
+				usuarioLogin.get().setUsuario(usuario.get().getUsuario());
 				usuarioLogin.get().setId(usuario.get().getId());
 				usuarioLogin.get().setFoto(usuario.get().getFoto());
 				usuarioLogin.get().setTipo(usuario.get().getTipo());
